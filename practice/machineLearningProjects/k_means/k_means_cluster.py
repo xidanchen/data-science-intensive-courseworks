@@ -42,8 +42,28 @@ def Draw(pred, features, poi, mark_poi=False, name="image.png", f1_name="feature
 data_dict = pickle.load( open("../final_project/final_project_dataset.pkl", "r") )
 ### there's an outlier--remove it! 
 data_dict.pop("TOTAL", 0)
-#data_dict.keys()
 
+data_dict["WASAFF GEORGE"]["salary"]
+
+keys = data_dict.keys()
+keys
+data_dict[keys[1]]["exercised_stock_options"]
+
+#find max, min for stock, ignore NaN
+stock = []
+for k in range(len(keys)):
+    stock.append(data_dict[keys[k]]["exercised_stock_options"])
+    
+stock = filter(lambda stock: stock != 'NaN', stock)
+print "stock range:", min(stock), max(stock)   
+
+#find max, min for salary, ignore NaN
+salary = []
+for k in range(len(keys)):
+    salary.append(data_dict[keys[k]]["salary"])
+    
+salary = filter(lambda salary: salary != 'NaN', salary)
+print "salary range:", min(salary), max(salary) 
 
 ### the input features we want to use 
 ### can be any key in the person-level dictionary (salary, director_fees, etc.) 
